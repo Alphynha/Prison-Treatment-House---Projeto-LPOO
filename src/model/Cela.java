@@ -21,6 +21,7 @@ public class Cela {
         return status != StatusCela.MANUTENCAO && ocupacaoAtual < capacidade;
     }
 
+    //Alocar preso em uma cela
     public boolean alocarPreso() {
         if (possuiEspaco()) {
             ocupacaoAtual++;
@@ -31,6 +32,18 @@ public class Cela {
         return false;
     }
 
+    //Desalocar preso de uma cela
+    public boolean desalocarPreso() {
+        if (ocupacaoAtual > 0) {
+            ocupacaoAtual--;
+            atualizarStatus();
+            return true;
+        }
+        System.out.println("A cela está vazia!");
+        return false;
+    }
+
+    //Atualizar status da cela
     private void atualizarStatus() {
         if (status == StatusCela.MANUTENCAO) {
             return;
