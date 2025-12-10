@@ -1,72 +1,82 @@
 import enums.GrauPericulosidade;
 import enums.Sexo;
 import enums.StatusCela;
-import model.Cela;
-import model.Pessoa;
-import model.Presidiario;
+import enums.StatusFuncionario;
+import model.*;
 
 import java.time.LocalDate;
 
 public class Main {
 
-    //Inicialmente essa classe será utilizada para realizar testes de desenvolvimento
     public static void main(String[] args) {
 
         //Criando cela
-        Cela cela = new Cela("C01", 1, 0, StatusCela.DESOCUPADA);
-
-        System.out.println(cela);
-        System.out.println();
-
-        //Criando o primeiro presidiario
-        Presidiario p1 = new Presidiario(
-                "Alphynha",
-                "12334095",
-                LocalDate.of(1999, 2, 20),
-                Sexo.M,
-                "P001",
-                LocalDate.now(),
-                GrauPericulosidade.ALTO
+        System.out.println("--- Criando cela ---");
+        Cela c1 = new Cela(
+                "C001",
+                3,
+                0,
+                StatusCela.DESOCUPADA
         );
 
-        System.out.println("--- Presidiario Criado ---");
+        System.out.println("Cela criada!");
+        System.out.println(c1);
+        System.out.println();
+
+        //Criando funcionario
+        System.out.println("--- Criando funcionario ---");
+        Funcionario f1 = new Funcionario(
+                "Alphynha",
+                "148998125",
+                LocalDate.of(2003, 5, 10),
+                Sexo.M,
+                "F001",
+                StatusFuncionario.ATIVO
+        );
+
+        System.out.println("Funcionário criado!");
+        System.out.println(f1);
+        System.out.println();
+
+        //Criando presidiario
+        System.out.println("--- Criando presidiario ---");
+        Presidiario p1 = new Presidiario(
+                "Presidiario",
+                "214898419",
+                LocalDate.of(1970, 4, 30),
+                Sexo.F,
+                "P001",
+                LocalDate.now(),
+                GrauPericulosidade.MEDIO
+        );
+
+        System.out.println("Presidiario Criado!");
         System.out.println(p1);
         System.out.println();
 
-        //Testando alocação
-        if (cela.alocarPreso()) {
-            p1.setCelaAlocada(cela);
+        //Alocando presidiario
+        if (c1.alocarPreso()) {
+            p1.setCelaAlocada(c1);
+            System.out.println();
+            System.out.println("Preso alocado com sucesso!");
         }
 
         System.out.println("--- Após alocação ---");
         System.out.println(p1);
-        System.out.println(cela);
         System.out.println();
 
-        //Criando segundo presidiario
-
-        System.out.println("--- Testando segundo presidiário ---");
-        System.out.println();
-
-        Presidiario p2 = new Presidiario(
+        //Criando visitante
+        System.out.println("--- Criando visitante ---");
+        Visita v1 = new Visita(
                 "Flaky",
-                "1239895021",
-                LocalDate.of(2000, 9, 29),
-                Sexo.F,
-                "P002",
                 LocalDate.now(),
-                GrauPericulosidade.BAIXO
+                p1
         );
 
-        //Tentando alocar em uma cela cheia
-        System.out.println("--- Tentando alocar na cela cheia---");
+        System.out.println("Visita criada!");
+        System.out.println(v1);
         System.out.println();
 
-        if (cela.alocarPreso()) {
-            p2.setCelaAlocada(cela);
-        }
-
-        //Fim do teste
-        System.out.println("Fim do teste!");
+        System.out.println("Fim do programa!");
     }
 }
