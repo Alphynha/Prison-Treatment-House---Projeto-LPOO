@@ -3,6 +3,8 @@ import enums.Sexo;
 import enums.StatusCela;
 import enums.StatusFuncionario;
 import model.*;
+import repository.ArrayListRepository;
+import repository.Repository;
 
 import java.time.LocalDate;
 
@@ -10,6 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        /*
         //Criando cela
         System.out.println("--- Criando cela ---");
         Cela c1 = new Cela(
@@ -78,5 +81,29 @@ public class Main {
         System.out.println();
 
         System.out.println("Fim do programa!");
+
+         */
+
+        //Testando repositorio
+        System.out.println("--- Teste Repositório ---");
+        System.out.println();
+        Repository<Presidiario, String> repo =
+                new ArrayListRepository<>(Presidiario::getMatricula);
+
+        Presidiario p = new Presidiario(
+                "Presidiario",
+                "214898419",
+                LocalDate.of(1970, 4, 30),
+                Sexo.F,
+                "P001",
+                LocalDate.now(),
+                GrauPericulosidade.BAIXO
+        );
+
+        repo.salvar(p);
+        repo.buscarTodos().forEach(System.out::println);
+        repo.removerPorId(p.getMatricula());
+        repo.buscarTodos().forEach(System.out::println);
+
     }
 }
