@@ -7,6 +7,7 @@ import repository.ArrayListRepository;
 import repository.Repository;
 import services.CelaService;
 import services.PresidiarioService;
+import services.VisitaService;
 
 import java.time.LocalDate;
 
@@ -14,21 +15,39 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Repository<Cela, String> repo = new ArrayListRepository<>(Cela::getIdCela);
+        Repository<Presidiario, String> presidiarioRepo = new ArrayListRepository<>(Presidiario::getMatricula);
 
-        CelaService service = new CelaService(repo);
+        VisitaService visitaService = new VisitaService(presidiarioRepo);
 
-        service.cadastrarCela(new Cela("C001", 3, 0, StatusCela.DESOCUPADA));
-        service.cadastrarCela(new Cela("C002", 2, 0, StatusCela.DESOCUPADA));
-        service.cadastrarCela(new Cela("C003", 2, 0, StatusCela.MANUTENCAO));
+        Presidiario preso = new Presidiario(
+                "Alpha",
+                "12357821837",
+                LocalDate.of(2000, 4, 10),
+                Sexo.M,
+                "P001",
+                LocalDate.now(),
+                GrauPericulosidade.ALTO
+        );
 
-        System.out.println("Todas as celas");
-        service.listarCelas().forEach(System.out::println);
+        presidiarioRepo.salvar(preso);
 
-        System.out.println("\nCelas disponíveis:");
-        service.listarCelasDisponiveis().forEach(System.out::println);
+        visitaService.registrarVisita(
+                "P001",
+                "Flaky",
+                LocalDate.now()
+        );
 
-        System.out.println("\nBuscar cela 1: ");
-        System.out.println(service.buscarPorId("C001"));
+        visitaService.registrarVisita(
+                "P001",
+                "R9",
+                LocalDate.now().minusDays(1)
+        );
+
+        System.out.println("Visitas do presidiario P001: ");
+        visitaService.listarVisitasPorPresidiario("P001").forEach(System.out::println);
+
+        System.out.println("\nTodas as visitas: ");
+        visitaService.listarTodos().forEach(System.out::println);
+
     }
 }
