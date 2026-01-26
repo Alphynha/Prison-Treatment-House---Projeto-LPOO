@@ -6,6 +6,7 @@ import repository.Repository;
 import services.CelaService;
 import services.PresidiarioService;
 import services.VisitaService;
+import ui.MenuCelas;
 import ui.MenuPresidiarios;
 import ui.MenuPrincipal;
 
@@ -34,8 +35,10 @@ public class Main {
                 new VisitaService(presidiarioRepo);
 
         MenuPresidiarios menuPresidiarios = new MenuPresidiarios(presidiarioService, celaService);
+        MenuCelas menuCelas = new MenuCelas(celaService);
+
         // Menu principal
-        MenuPrincipal menu = new MenuPrincipal(menuPresidiarios);
+        MenuPrincipal menu = new MenuPrincipal(menuPresidiarios, menuCelas);
 
         menu.start();
 

@@ -38,7 +38,7 @@ public class CelaService {
     //Listar celas disponíveis
     public List<Cela> listarCelasDisponiveis() {
         return celaRepo.buscarTodos().stream()
-                .filter(c -> c.getStatus() != StatusCela.MANUTENCAO)
+                .filter(c -> c.getStatus() != StatusCela.LOTADA)
                 .filter(Cela::possuiEspaco)
                 .toList();
     }

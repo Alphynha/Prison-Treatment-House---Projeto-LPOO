@@ -9,16 +9,17 @@ public class Cela {
     private int ocupacaoAtual;
     private StatusCela status;
 
-    public Cela(String idCela, int capacidade, int ocupacaoAtual, StatusCela status) {
+    public Cela(String idCela, int capacidade) {
         this.idCela = idCela;
         this.capacidade = capacidade;
-        this.ocupacaoAtual = ocupacaoAtual;
-        this.status = status;
+        this.ocupacaoAtual = 0;
+        this.status = StatusCela.DESOCUPADA;
     }
 
     //Verificar se a cela está disponível
     public boolean possuiEspaco() {
-        return status != StatusCela.MANUTENCAO && ocupacaoAtual < capacidade;
+        atualizarStatus();
+        return status != StatusCela.LOTADA;
     }
 
     //Alocar preso em uma cela
@@ -45,16 +46,13 @@ public class Cela {
 
     //Atualizar status da cela
     private void atualizarStatus() {
-        if (status == StatusCela.MANUTENCAO) {
-            return;
-        }
-
         if (ocupacaoAtual == 0) {
             status = StatusCela.DESOCUPADA;
-        } else {
+        } else if (ocupacaoAtual < capacidade) {
             status = StatusCela.OCUPADA;
+        } else {
+            status = StatusCela.LOTADA;
         }
-
     }
 
     @Override
