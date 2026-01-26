@@ -4,6 +4,8 @@ import model.Cela;
 import model.Presidiario;
 import repository.Repository;
 
+import java.util.List;
+
 public class PresidiarioService {
 
     private final Repository<Presidiario, String> presidiarioRepo;
@@ -14,7 +16,7 @@ public class PresidiarioService {
         this.celaRepo = celaRepo;
     }
 
-    //Cadastrar Presidiario
+    // Cadastrar Presidiario
     public Presidiario cadastrarPresidiario(Presidiario p) {
         boolean existe = presidiarioRepo.buscarPorId(p.getMatricula()).isPresent();
         if (existe) {
@@ -24,7 +26,7 @@ public class PresidiarioService {
         return presidiarioRepo.salvar(p);
     }
 
-    //Alocar em Cela
+    // Alocar em Cela
     public void alocarPresidiarioEmCela(String matricula, String idCela) {
         Presidiario p = presidiarioRepo.buscarPorId(matricula)
                 .orElseThrow(() -> new IllegalArgumentException("Presidiario não encontrado."));
@@ -66,15 +68,20 @@ public class PresidiarioService {
             celaRepo.salvar(cela);
     }
 
-    //Transferir
+    // Transferir
     public void transferirPresidiario(String matricula, String novaCelaId) {
         desalocarPresidiario(matricula);
         alocarPresidiarioEmCela(matricula, novaCelaId);
     }
 
-    //Buscar Preso
+    // Buscar Preso
     public Presidiario buscarPorMatricula(String matricula) {
         return presidiarioRepo.buscarPorId(matricula)
                 .orElse(null);
+    }
+
+    // Listar Presidiarios
+    public List<Presidiario> listar() {
+        return presidiarioRepo.buscarTodos();
     }
 }

@@ -1,10 +1,43 @@
-import app.PrisonTreatmentHouse;
+import model.Cela;
+import model.Presidiario;
+import model.Visita;
+import repository.ArrayListRepository;
+import repository.Repository;
+import services.CelaService;
+import services.PresidiarioService;
+import services.VisitaService;
+import ui.MenuPresidiarios;
+import ui.MenuPrincipal;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        new PrisonTreatmentHouse().start();
+        // Repositórios
+        Repository<Presidiario, String> presidiarioRepo =
+                new ArrayListRepository<>(Presidiario::getMatricula);
+
+        Repository<Cela, String> celaRepo =
+                new ArrayListRepository<>(Cela::getIdCela);
+
+        Repository<Visita, Visita> visitaRepo =
+                new ArrayListRepository<>(v -> v); // sem id, o próprio objeto
+
+        // Services
+        PresidiarioService presidiarioService =
+                new PresidiarioService(presidiarioRepo, celaRepo);
+
+        CelaService celaService =
+                new CelaService(celaRepo);
+
+        VisitaService visitaService =
+                new VisitaService(presidiarioRepo);
+
+        MenuPresidiarios menuPresidiarios = new MenuPresidiarios(presidiarioService, celaService);
+        // Menu principal
+        MenuPrincipal menu = new MenuPrincipal(menuPresidiarios);
+
+        menu.start();
 
     }
 }
