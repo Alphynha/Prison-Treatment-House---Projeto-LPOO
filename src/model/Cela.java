@@ -16,13 +16,13 @@ public class Cela {
         this.status = StatusCela.DESOCUPADA;
     }
 
-    //Verificar se a cela está disponível
+    // Verificar se a cela está disponível
     public boolean possuiEspaco() {
         atualizarStatus();
         return status != StatusCela.LOTADA;
     }
 
-    //Alocar preso em uma cela
+    // Alocar preso em uma cela
     public boolean alocarPreso() {
         if (possuiEspaco()) {
             ocupacaoAtual++;
@@ -33,7 +33,7 @@ public class Cela {
         return false;
     }
 
-    //Desalocar preso de uma cela
+    // Desalocar preso de uma cela
     public boolean desalocarPreso() {
         if (ocupacaoAtual > 0) {
             ocupacaoAtual--;
@@ -44,7 +44,7 @@ public class Cela {
         return false;
     }
 
-    //Atualizar status da cela
+    // Atualizar status da cela
     private void atualizarStatus() {
         if (ocupacaoAtual == 0) {
             status = StatusCela.DESOCUPADA;
@@ -65,7 +65,7 @@ public class Cela {
                 '}';
     }
 
-    //Getters & Setters
+    // Getters & Setters
     public String getIdCela() {
         return idCela;
     }

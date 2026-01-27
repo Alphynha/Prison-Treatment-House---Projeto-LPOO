@@ -15,6 +15,7 @@ public class MenuCelas {
         this.celaService = celaService;
     }
 
+    // Inicializar Menu
     public void start() {
         int opcao;
 
@@ -42,7 +43,7 @@ public class MenuCelas {
         } while (opcao != 0);
     }
 
-    //Cadastrar Cela
+    // Cadastrar Cela
     private void cadastrar() {
         System.out.print("ID da cela: ");
         String id = scanner.nextLine();
@@ -56,7 +57,7 @@ public class MenuCelas {
         System.out.println("Cela cadastrada com sucesso.");
     }
 
-    //Listar Celas
+    // Listar Celas
     private void listar() {
         List<Cela> celas = celaService.listarCelas();
 
@@ -68,7 +69,7 @@ public class MenuCelas {
         celas.forEach(System.out::println);
     }
 
-    //Tratamento de Entrada
+    // Tratamento de Entrada
     private int lerInteiro() {
         try {
             return Integer.parseInt(scanner.nextLine());

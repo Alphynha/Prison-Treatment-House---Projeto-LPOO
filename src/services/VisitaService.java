@@ -18,7 +18,7 @@ public class VisitaService {
         this.presidiarioRepo = presidiarioRepo;
     }
 
-    //Registrar Visita
+    // Registrar Visita
     public void registrarVisita(String matriculaPreso, String nomeVisitante, LocalDate data) {
 
         Presidiario preso = presidiarioRepo.buscarPorId(matriculaPreso)
@@ -27,7 +27,7 @@ public class VisitaService {
         visitas.add(new Visita(nomeVisitante, data, preso));
     }
 
-    //Listar Visitas por Preso
+    // Listar Visitas por Preso
     public List<Visita> listarVisitasPorPresidiario(String matricula) {
 
         return visitas.stream()
@@ -36,7 +36,7 @@ public class VisitaService {
 
     }
 
-    //Listar todas as Visitas
+    // Listar todas as Visitas
     public List<Visita> listarTodos() {
         return new ArrayList<>(visitas);
     }

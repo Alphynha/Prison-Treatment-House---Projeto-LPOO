@@ -68,12 +68,6 @@ public class PresidiarioService {
             celaRepo.salvar(cela);
     }
 
-    // Transferir
-    public void transferirPresidiario(String matricula, String novaCelaId) {
-        desalocarPresidiario(matricula);
-        alocarPresidiarioEmCela(matricula, novaCelaId);
-    }
-
     // Buscar Preso
     public Presidiario buscarPorMatricula(String matricula) {
         return presidiarioRepo.buscarPorId(matricula)

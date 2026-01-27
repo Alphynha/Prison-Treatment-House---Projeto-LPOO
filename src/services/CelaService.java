@@ -14,7 +14,7 @@ public class CelaService {
         this.celaRepo = celaRepo;
     }
 
-    //Cadastrar Cela
+    // Cadastrar Cela
     public Cela cadastrarCela(Cela c) {
         boolean existe = celaRepo.buscarPorId(c.getIdCela()).isPresent();
         if (existe) {
@@ -24,18 +24,18 @@ public class CelaService {
         return celaRepo.salvar(c);
     }
 
-    //Listar Celas
+    // Listar Celas
     public List<Cela> listarCelas() {
         return celaRepo.buscarTodos();
     }
 
-    //Buscar Cela
+    // Buscar Cela
     public Cela buscarPorId(String id) {
         return celaRepo.buscarPorId(id)
                 .orElse(null);
     }
 
-    //Listar celas disponíveis
+    // Listar celas disponíveis
     public List<Cela> listarCelasDisponiveis() {
         return celaRepo.buscarTodos().stream()
                 .filter(c -> c.getStatus() != StatusCela.LOTADA)

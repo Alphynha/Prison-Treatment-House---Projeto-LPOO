@@ -26,6 +26,7 @@ public class MenuPresidiarios {
         this.celaService = celaService;
     }
 
+    // Inicializar Menu
     public void start() {
         int opcao;
 
@@ -57,7 +58,7 @@ public class MenuPresidiarios {
         } while (opcao != 0);
     }
 
-    //Cadastrar Presidiario
+    // Cadastrar Presidiario
     private void cadastrar() {
         System.out.println("Nome: ");
         String nome = scanner.nextLine();
@@ -90,7 +91,7 @@ public class MenuPresidiarios {
         System.out.println("Presidiario cadastrado com sucesso.");
     }
 
-    //Listar Presidiario
+    // Listar Presidiario
     private void listar() {
         List<Presidiario> presidiarios = presidiarioService.listar();
 
@@ -102,7 +103,7 @@ public class MenuPresidiarios {
         presidiarios.forEach(System.out::println);
     }
 
-    //Alocar
+    // Alocar Presidiario
     private void alocar() {
         System.out.println("Matrícula do presidiário: ");
         String matricula = scanner.nextLine();
@@ -115,7 +116,7 @@ public class MenuPresidiarios {
 
     }
 
-    //Desalocar
+    // Desalocar Presidiario
     private void desalocar() {
 
         System.out.println("Matricula do presidiario: ");
@@ -125,7 +126,8 @@ public class MenuPresidiarios {
         System.out.println("Presidiário desalocado com sucesso.");
     }
 
-    //Tratamento de Entradas
+    // Tratamento de Entradas
+    // Inteiro
     private int lerInteiro() {
         try {
             return Integer.parseInt(scanner.nextLine());
@@ -134,6 +136,7 @@ public class MenuPresidiarios {
         }
     }
 
+    // Data
     private LocalDate lerData(String mensagem) {
         while (true) {
             try {
@@ -148,6 +151,7 @@ public class MenuPresidiarios {
         }
     }
 
+    // Sexo (enums)
     private Sexo lerSexo() {
         while (true) {
             System.out.println("Sexo:");
@@ -164,6 +168,7 @@ public class MenuPresidiarios {
         }
     }
 
+    // Grau de Periculosidade (enums)
     private GrauPericulosidade lerGrauPericulosidade() {
         while (true) {
             System.out.println("Grau de periculosidade:");

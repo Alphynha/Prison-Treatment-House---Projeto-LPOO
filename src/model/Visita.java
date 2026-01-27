@@ -23,6 +23,7 @@ public class Visita {
                 '}';
     }
 
+    // Getters e Setters
     public String getNomeVisitante() {
         return nomeVisitante;
     }

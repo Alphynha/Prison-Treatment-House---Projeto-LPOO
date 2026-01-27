@@ -9,6 +9,7 @@ import services.VisitaService;
 import ui.MenuCelas;
 import ui.MenuPresidiarios;
 import ui.MenuPrincipal;
+import ui.MenuVisitas;
 
 public class Main {
 
@@ -34,12 +35,15 @@ public class Main {
         VisitaService visitaService =
                 new VisitaService(presidiarioRepo);
 
+        // Menus
         MenuPresidiarios menuPresidiarios = new MenuPresidiarios(presidiarioService, celaService);
         MenuCelas menuCelas = new MenuCelas(celaService);
+        MenuVisitas menuVisitas = new MenuVisitas(visitaService);
 
         // Menu principal
-        MenuPrincipal menu = new MenuPrincipal(menuPresidiarios, menuCelas);
+        MenuPrincipal menu = new MenuPrincipal(menuPresidiarios, menuCelas, menuVisitas);
 
+        // Inicializando Menu Principal
         menu.start();
 
     }
