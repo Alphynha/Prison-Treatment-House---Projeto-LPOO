@@ -48,7 +48,7 @@ O objetivo do projeto é modelar um sistema penitenciário básico, permitindo o
 ## Como executar
 
 1. Clone o repositório:
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/Alphynha/Prison-Treatment-House---Projeto-LPOO.git
 
 2. Abra o projeto em uma IDE Java (Intellij, Eclipse, VS Code)
 
@@ -64,4 +64,4 @@ Aplicação dos conceitos de POO vistos na disciplina de LPOO - 2º ADS IFPE Cam
 
 ---
 
-## Desenvolvido por: Alphynha
+Desenvolvido por: Alphynha
